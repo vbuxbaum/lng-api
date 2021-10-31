@@ -24,7 +24,10 @@ slack_event_adapter = SlackEventAdapter(
 )
 
 client = slack.WebClient(token=os.environ["SLACK_BOT_TOKEN"])
-client.chat_postMessage(channel=BUX_USER_ID, text="... iniciando ...")
+client.chat_postMessage(
+    channel=BUX_USER_ID,
+    text=f":rocket: Iniciando em ambiente <{os.environ['FLASK_ENV']}>...",
+)
 
 feedbacks_handler = Feedbacks()
 
