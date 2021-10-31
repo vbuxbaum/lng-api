@@ -1,12 +1,15 @@
+import os
 import requests
+from pathlib import Path
+from dotenv import load_dotenv
 
 
 class Feedbacks:
-    REPO_BASE_URL = (
-        "https://raw.githubusercontent.com/vbuxbaum/language-feedbacks/main"
-    )
-
     def __init__(self):
+        env_path = Path(".") / ".env"
+        load_dotenv(dotenv_path=env_path)
+        self.REPO_BASE_URL = os.environ["REPO_BASE_URL"]
+
         self.__feedbacks = {}
         self.update_feedbacks()
 
