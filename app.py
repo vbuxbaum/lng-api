@@ -32,6 +32,7 @@ feedbacks_handler = Feedbacks()
 @app.route("/feedbacks_handler", methods=["POST"])
 def hello_world():
     feedbacks_handler.update_feedbacks()
+    return {}
 
 
 @slack_event_adapter.on("message")
