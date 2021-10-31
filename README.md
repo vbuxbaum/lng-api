@@ -28,4 +28,8 @@ Instale as dependências
 pip install -r dev-requirements
 ```
 
-Instale o [NGROK](https://ngrok.com/download)
+Execute o app:
+
+```bash
+gunicorn app:app
+```
