@@ -26,8 +26,12 @@ slack_event_adapter = SlackEventAdapter(
 client = slack.WebClient(token=os.environ["SLACK_BOT_TOKEN"])
 client.chat_postMessage(channel=BUX_USER_ID, text="... iniciando ...")
 
-
 feedbacks_handler = Feedbacks()
+
+
+@app.route("/feedbacks_handler", methods=["POST"])
+def hello_world():
+    feedbacks_handler.update_feedbacks()
 
 
 @slack_event_adapter.on("message")
@@ -36,7 +40,7 @@ def listen_messages(payload):
 
     user_id = event.get("user")
     if user_id not in TESTER_USER_IDS:
-        print(event.get("text", 'None'))
+        print(event.get("text", "None"))
         return
 
     text_message: str = event["text"]
