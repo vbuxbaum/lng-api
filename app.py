@@ -29,10 +29,20 @@ client.chat_postMessage(channel=BUX_USER_ID, text="... iniciando ...")
 feedbacks_handler = Feedbacks()
 
 
-@app.route("/feedbacks_handler", methods=["POST"])
+@app.route("/slack/update_feedbacks", methods=["POST"])
 def hello_world():
-    feedbacks_handler.update_feedbacks()
-    return {}
+    try:
+        feedbacks_handler.update_feedbacks()
+    except Exception as e:
+        return (
+            "Ops, aconteceu isso ao tentar atualizar"
+            f" os feedbacks com o repositório principal: {e}"
+        )
+    return (
+        "Feedbacks atualizados com o repositório principal! :tada:"
+        "\n\n"
+        "Aguarde um momento até a novidade estabilizar :relaxed:"
+    )
 
 
 @slack_event_adapter.on("message")
