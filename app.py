@@ -29,7 +29,7 @@ client.chat_postMessage(channel=BUX_USER_ID, text="... iniciando ...")
 feedbacks_handler = Feedbacks()
 
 
-@app.route("/feedbacks_handler", methods=["POST"])
+@app.route("/feedbacks-update", methods=["POST"])
 def hello_world():
     feedbacks_handler.update_feedbacks()
 
