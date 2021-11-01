@@ -24,14 +24,28 @@ slack_event_adapter = SlackEventAdapter(
 )
 
 client = slack.WebClient(token=os.environ["SLACK_BOT_TOKEN"])
-client.chat_postMessage(channel=BUX_USER_ID, text="... iniciando ...")
+client.chat_postMessage(
+    channel=BUX_USER_ID,
+    text=f":rocket: Iniciando em ambiente <{os.environ['FLASK_ENV']}>...",
+)
 
 feedbacks_handler = Feedbacks()
 
 
-@app.route("/feedbacks_handler", methods=["POST"])
+@app.route("/slack/update_feedbacks", methods=["POST"])
 def hello_world():
-    feedbacks_handler.update_feedbacks()
+    try:
+        feedbacks_handler.update_feedbacks()
+    except Exception as e:
+        return (
+            "Ops, aconteceu isso ao tentar atualizar"
+            f" os feedbacks com o repositório principal: {e}"
+        )
+    return (
+        "Feedbacks atualizados com o repositório principal! :tada:"
+        "\n\n"
+        "Aguarde um momento até a novidade estabilizar :relaxed:"
+    )
 
 
 @slack_event_adapter.on("message")
