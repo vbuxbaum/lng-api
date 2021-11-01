@@ -13,7 +13,7 @@ class Feedbacks:
         self.__feedbacks = {}
         self.update_feedbacks()
 
-    def get_caution_words(self) -> str:
+    def get_avoided_expressions(self) -> str:
         return self.__feedbacks.keys()
 
     def update_feedbacks(self) -> dict:
@@ -21,13 +21,22 @@ class Feedbacks:
         raw_dict = requests.get(self.REPO_BASE_URL + "/feedbacks.json")
         self.__feedbacks = raw_dict.json()
 
-    def build_feedback(self, caution_word: str, user_id: str) -> str:
+    def find_avoided_expression(self, text_message):
+        text_message = text_message.lower()
+
+        for avoided_expression in self.get_avoided_expressions():
+            if avoided_expression.lower() in text_message:
+                return avoided_expression.lower()
+
+        return None
+
+    def build_feedback(self, found_word: str, user_id: str) -> str:
         intro = (
             f"Olá <@{user_id}> :green_heart:!"
-            + f"Escutei você falando *{caution_word}*"
+            + f"Escutei você falando *{found_word}*"
         )
 
-        explanation = f":eyes: Olha só: {self.__feedbacks[caution_word]}"
+        explanation = f":eyes: Olha só: {self.__feedbacks[found_word]}"
 
         goodbye = "#VQV"
 

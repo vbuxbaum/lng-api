@@ -8,15 +8,14 @@ from feedbacks import Feedbacks
 import slack
 from slackeventsapi import SlackEventAdapter
 
-
-RONA_USER_ID = "U023CHB5UR0"
-BUX_USER_ID = "U01JGS5RE1M"
-
-TESTER_USER_IDS = {RONA_USER_ID, BUX_USER_ID}
-TEST_CHANNEL = "C029JE2720M"
-
 env_path = Path(".") / ".env"
 load_dotenv(dotenv_path=env_path)
+
+
+BUX_USER_ID = "U01JGS5RE1M"
+TEST_CHANNEL = "C029JE2720M"
+TESTER_USER_IDS = os.environ["TESTER_USER_IDS"].split(",")
+
 
 app = Flask(__name__)
 slack_event_adapter = SlackEventAdapter(
@@ -24,10 +23,11 @@ slack_event_adapter = SlackEventAdapter(
 )
 
 client = slack.WebClient(token=os.environ["SLACK_BOT_TOKEN"])
-client.chat_postMessage(
-    channel=BUX_USER_ID,
-    text=f":rocket: Iniciando em ambiente <{os.environ['FLASK_ENV']}>...",
-)
+if (flask_env := os.environ["FLASK_ENV"]) != "production":
+    client.chat_postMessage(
+        channel=BUX_USER_ID,
+        text=f":rocket: Iniciando em ambiente <{flask_env}>...",
+    )
 
 feedbacks_handler = Feedbacks()
 
@@ -39,12 +39,12 @@ def hello_world():
     except Exception as e:
         return (
             "Ops, aconteceu isso ao tentar atualizar"
-            f" os feedbacks com o repositório principal: {e}"
+            f" os feedbacks com o anti-glossário: {e}"
         )
     return (
-        "Feedbacks atualizados com o repositório principal! :tada:"
+        ":tada: Feedbacks atualizados com o anti-glossário!"
         "\n\n"
-        "Aguarde um momento até a novidade estabilizar :relaxed:"
+        ":relaxed: Aguarde um momento até a novidade estabilizar"
     )
 
 
@@ -54,22 +54,16 @@ def listen_messages(payload):
 
     user_id = event.get("user")
     if user_id not in TESTER_USER_IDS:
-        print(event.get("text", "None"))
         return
 
     text_message: str = event["text"]
-    caution_words = feedbacks_handler.get_caution_words()
 
-    oopsie_words = [
-        word.lower()
-        for word in text_message.split(" ")
-        if word.lower() in caution_words
-    ]
+    found_expression = feedbacks_handler.find_avoided_expression(text_message)
 
-    if not oopsie_words:
+    if not found_expression:
         return
 
-    feedback_text = feedbacks_handler.build_feedback(oopsie_words[0], user_id)
+    feedback_text = feedbacks_handler.build_feedback(found_expression, user_id)
     client.chat_postMessage(channel=user_id, text=feedback_text)
 
 
