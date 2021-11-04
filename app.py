@@ -32,22 +32,6 @@ if (flask_env := os.environ["FLASK_ENV"]) != "production":
 feedbacks_handler = Feedbacks()
 
 
-@app.route("/slack/update_feedbacks", methods=["POST"])
-def hello_world():
-    try:
-        feedbacks_handler.update_feedbacks()
-    except Exception as e:
-        return (
-            "Ops, aconteceu isso ao tentar atualizar"
-            f" os feedbacks com o anti-glossário: {e}"
-        )
-    return (
-        ":tada: Feedbacks atualizados com o anti-glossário!"
-        "\n\n"
-        ":relaxed: Aguarde um momento até a novidade estabilizar"
-    )
-
-
 @slack_event_adapter.on("message")
 def listen_messages(payload):
     event = payload.get("event", {})
@@ -63,7 +47,9 @@ def listen_messages(payload):
     if not found_expression:
         return
 
-    feedback_text = feedbacks_handler.build_feedback(found_expression, user_id)
+    feedback_text = feedbacks_handler.build_feedback(
+        found_expression, user_id
+    )
     client.chat_postMessage(channel=user_id, text=feedback_text)
 
 

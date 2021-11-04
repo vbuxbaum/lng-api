@@ -1,8 +1,17 @@
 {
-  "denegrir": "o verbo _*denegrir*_ tem origem racista, e você pode substituir por _*difamar*_ ",
-  "os estudantes": " caso esteja se referindo a um grupo não composto apenas por homens, é possível se adequar melhor à  <https://link|Linguagem Neutra de Gênero>",
-  "tranquilos e tranquilas": "quando falamos ou escrevemos algo como _*fiquem tranquilos e tranquilas*_, é possível se adequar melhor à <https://link|Linguagem Neutra de Gênero>. Nesse caso você poderia substituir por _*tenham tranquilidade*_.",
-  "tranquilas e tranquilos": "quando falamos ou escrevemos algo como _*fiquem tranquilos e tranquilas*_, é possível se adequar melhor à <https://link|Linguagem Neutra de Gênero>. Nesse caso você poderia substituir por _*tenham tranquilidade*_.",
-  "mulato": "o termo _*mulato*_ tem origem racista, e você pode substituir por _*preto*_ ou _*negro*_ (há dissonâncias acerca do uso do termo _negro_, então, sempre leve em consideração como a pessoa quer ser representada).",
-  "mulata": "o termo _*mulata*_ tem origem racista, e você pode substituir por _*preta*_ ou _*negra*_ (há dissonâncias acerca do uso do termo _negra_, então, sempre leve em consideração como a pessoa quer ser representada)."
+  "default_text": {
+    "intro":"Olá <@<user_id>> :green_heart:! Escutei você falando *<found_word>*",
+    "explanation": ":eyes: Olha só: <feedback>",
+    "goodbye": "#VQV"
+  },
+  "feedbacks": {
+    "denegrir": "denegrir",
+    "denegrindo": "denegrir",
+    "denegriu": "denegrir",
+    "os estudantes": "os_estudantes",
+    "tranquilos e tranquilas": "tranquilos_as",
+    "tranquilas e tranquilos": "tranquilos_as",
+    "mulato": "mulato_a",
+    "mulata": "mulato_a"
+  }
 }

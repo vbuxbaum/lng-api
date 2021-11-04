@@ -11,20 +11,9 @@ class Feedbacks:
     def update_feedbacks(self) -> None:
         try:
             with open("data/feedbacks.json") as feedbacks_file:
-                feedbacks_raw = feedbacks_file.read()
-                self.__feedbacks = json.loads(feedbacks_raw)
-        except FileNotFoundError:
-            raise FileNotFoundError("Base de feedbacks não encontrada")
-        except json.decoder.JSONDecodeError as e:
-            raise SyntaxError(
-                f"Base de feedbacks com sintaxe inválida : {e.args[0]}"
-            )
-
-    def new_update_feedbacks(self) -> None:
-        try:
-            with open("data/feedbacks_new.json") as feedbacks_file:
-                self.__feedbacks = json.load(feedbacks_file)["feedbacks"]
-                self.__default_text = json.load(feedbacks_file)["default_text"]
+                full_dict = json.load(feedbacks_file)
+                self.__feedbacks = full_dict["feedbacks"]
+                self.__default_text = full_dict["default_text"]
         except FileNotFoundError:
             raise FileNotFoundError("Base de feedbacks não encontrada")
         except json.decoder.JSONDecodeError as e:
@@ -45,34 +34,33 @@ class Feedbacks:
         return None
 
     def build_feedback(self, found_word: str, user_id: str) -> str:
-        intro = (
-            f"Olá <@{user_id}> :green_heart:!"
-            + f"Escutei você falando *{found_word}*"
-        )
+        intro = self._build_intro(found_word, user_id)
 
-        explanation = f":eyes: Olha só: {self.__feedbacks[found_word]}"
+        explanation = self._build_explanation(found_word)
 
-        goodbye = "#VQV"
+        goodbye = self._build_goodbye()
 
         return "\n\n".join([intro, explanation, goodbye])
 
-    def new_build_feedback(self, found_word: str, user_id: str) -> str:
-        intro = (
+    def _build_intro(self, found_word: str, user_id: str) -> str:
+        return (
             self.__default_text["intro"]
             .replace("<user_id>", user_id)
             .replace("<found_word>", found_word)
         )
 
-        with open(f"{self.__feedbacks[found_word]}.slack") as feedback_file:
+    def _build_explanation(self, found_word: str) -> str:
+        feedback_path = f"data/{self.__feedbacks[found_word]}.slack"
+
+        with open(feedback_path) as feedback_file:
             feedback_text = feedback_file.read()
 
-        explanation = self.__default_text["explanation"].replace(
+        return self.__default_text["explanation"].replace(
             "<feedback>", feedback_text
         )
 
-        goodbye = self.__default_text["goodbye"]
-
-        return "\n\n".join([intro, explanation, goodbye])
+    def _build_goodbye(self) -> str:
+        return self.__default_text["goodbye"]
 
 
 if __name__ == "__main__":
