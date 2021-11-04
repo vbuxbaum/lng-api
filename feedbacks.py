@@ -3,7 +3,7 @@ import json
 
 class Feedbacks:
     def __init__(self):
-        self.update_feedbacks()
+        self.load_feedbacks()
 
     def get_avoided_expressions(self) -> list:
         return list(self.__feedbacks.keys())
