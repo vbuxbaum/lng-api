@@ -6,10 +6,10 @@ class Feedbacks:
         self.__feedbacks = {}
         self.update_feedbacks()
 
-    def get_avoided_expressions(self) -> str:
-        return self.__feedbacks.keys()
+    def get_avoided_expressions(self) -> list:
+        return list(self.__feedbacks.keys())
 
-    def update_feedbacks(self) -> dict:
+    def update_feedbacks(self) -> None:
         try:
             with open("data/feedbacks.json") as feedbacks_file:
                 feedbacks_raw = feedbacks_file.read()
@@ -21,11 +21,14 @@ class Feedbacks:
                 f"Base de feedbacks com sintaxe inválida : {e.args[0]}"
             )
 
-    def find_avoided_expression(self, text_message):
-        text_message = text_message.lower()
+    def find_avoided_expression(self, text_message: str) -> str:
+
+        clean_message = "".join(
+            c.lower() for c in text_message if c.isalnum() or c == " "
+        )
 
         for avoided_expression in self.get_avoided_expressions():
-            if avoided_expression.lower() in text_message:
+            if avoided_expression.lower() in clean_message:
                 return avoided_expression.lower()
 
         return None
