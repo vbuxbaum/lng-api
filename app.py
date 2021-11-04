@@ -47,9 +47,7 @@ def listen_messages(payload):
     if not found_expression:
         return
 
-    feedback_text = feedbacks_handler.build_feedback(
-        found_expression, user_id
-    )
+    feedback_text = feedbacks_handler.build_feedback(found_expression, user_id)
     client.chat_postMessage(channel=user_id, text=feedback_text)
 
 
