@@ -1,15 +1,8 @@
-import os
-import requests
-from pathlib import Path
-from dotenv import load_dotenv
+import json
 
 
 class Feedbacks:
     def __init__(self):
-        env_path = Path(".") / ".env"
-        load_dotenv(dotenv_path=env_path)
-        self.REPO_BASE_URL = os.environ["REPO_BASE_URL"]
-
         self.__feedbacks = {}
         self.update_feedbacks()
 
@@ -17,9 +10,16 @@ class Feedbacks:
         return self.__feedbacks.keys()
 
     def update_feedbacks(self) -> dict:
-        print("Updating feedbacks from GitHub . . . . ")
-        raw_dict = requests.get(self.REPO_BASE_URL + "/feedbacks.json")
-        self.__feedbacks = raw_dict.json()
+        try:
+            with open("data/feedbacks.json") as feedbacks_file:
+                feedbacks_raw = feedbacks_file.read()
+                self.__feedbacks = json.loads(feedbacks_raw)
+        except FileNotFoundError:
+            raise FileNotFoundError("Base de feedbacks não encontrada")
+        except json.decoder.JSONDecodeError as e:
+            raise SyntaxError(
+                f"Base de feedbacks com sintaxe inválida : {e.args[0]}"
+            )
 
     def find_avoided_expression(self, text_message):
         text_message = text_message.lower()
