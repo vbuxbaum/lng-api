@@ -8,7 +8,7 @@ class Feedbacks:
     def get_avoided_expressions(self) -> list:
         return list(self.__feedbacks.keys())
 
-    def update_feedbacks(self) -> None:
+    def load_feedbacks(self) -> None:
         try:
             with open("data/feedbacks.json") as feedbacks_file:
                 full_dict = json.load(feedbacks_file)
