@@ -1,0 +1,17 @@
+{
+  "default_text": {
+    "intro":"Olá <@<user_id>> :green_heart:! Escutei você falando *<found_word>*",
+    "explanation": ":eyes: Olha só: <feedback>",
+    "goodbye": "#VQV"
+  },
+  "feedbacks": {
+    "denegrir": "denegrir",
+    "denegrindo": "denegrir",
+    "denegriu": "denegrir",
+    "os estudantes": "os_estudantes",
+    "tranquilos e tranquilas": "tranquilos_as",
+    "tranquilas e tranquilos": "tranquilos_as",
+    "mulato": "mulato_a",
+    "mulata": "mulato_a"
+  }
+}

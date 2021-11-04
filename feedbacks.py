@@ -1,46 +1,66 @@
-import os
-import requests
-from pathlib import Path
-from dotenv import load_dotenv
+import json
 
 
 class Feedbacks:
     def __init__(self):
-        env_path = Path(".") / ".env"
-        load_dotenv(dotenv_path=env_path)
-        self.REPO_BASE_URL = os.environ["REPO_BASE_URL"]
+        self.load_feedbacks()
 
-        self.__feedbacks = {}
-        self.update_feedbacks()
+    def get_avoided_expressions(self) -> list:
+        return list(self.__feedbacks.keys())
 
-    def get_avoided_expressions(self) -> str:
-        return self.__feedbacks.keys()
+    def load_feedbacks(self) -> None:
+        try:
+            with open("data/feedbacks.json") as feedbacks_file:
+                full_dict = json.load(feedbacks_file)
+                self.__feedbacks = full_dict["feedbacks"]
+                self.__default_text = full_dict["default_text"]
+        except FileNotFoundError:
+            raise FileNotFoundError("Base de feedbacks não encontrada")
+        except json.decoder.JSONDecodeError as e:
+            raise SyntaxError(
+                f"Base de feedbacks com sintaxe inválida : {e.args[0]}"
+            )
 
-    def update_feedbacks(self) -> dict:
-        print("Updating feedbacks from GitHub . . . . ")
-        raw_dict = requests.get(self.REPO_BASE_URL + "/feedbacks.json")
-        self.__feedbacks = raw_dict.json()
+    def find_avoided_expression(self, text_message: str) -> str:
 
-    def find_avoided_expression(self, text_message):
-        text_message = text_message.lower()
+        clean_message = "".join(
+            c.lower() for c in text_message if c.isalnum() or c == " "
+        )
 
         for avoided_expression in self.get_avoided_expressions():
-            if avoided_expression.lower() in text_message:
+            if avoided_expression.lower() in clean_message:
                 return avoided_expression.lower()
 
         return None
 
     def build_feedback(self, found_word: str, user_id: str) -> str:
-        intro = (
-            f"Olá <@{user_id}> :green_heart:!"
-            + f"Escutei você falando *{found_word}*"
-        )
+        intro = self._build_intro(found_word, user_id)
 
-        explanation = f":eyes: Olha só: {self.__feedbacks[found_word]}"
+        explanation = self._build_explanation(found_word)
 
-        goodbye = "#VQV"
+        goodbye = self._build_goodbye()
 
         return "\n\n".join([intro, explanation, goodbye])
+
+    def _build_intro(self, found_word: str, user_id: str) -> str:
+        return (
+            self.__default_text["intro"]
+            .replace("<user_id>", user_id)
+            .replace("<found_word>", found_word)
+        )
+
+    def _build_explanation(self, found_word: str) -> str:
+        feedback_path = f"data/{self.__feedbacks[found_word]}.slack"
+
+        with open(feedback_path) as feedback_file:
+            feedback_text = feedback_file.read()
+
+        return self.__default_text["explanation"].replace(
+            "<feedback>", feedback_text
+        )
+
+    def _build_goodbye(self) -> str:
+        return self.__default_text["goodbye"]
 
 
 if __name__ == "__main__":
