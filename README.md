@@ -36,7 +36,11 @@ Os termos `os_estudantes` e `denegrir` fazem referência aos arquivos `data/os_e
 
 O texto nos arquivos com final `.slack` podem conter [formatação](https://api.slack.com/reference/surfaces/formatting) como negrito, itálico, emojis, links, etc.
 
-Para alterar esses textos, basta alterar o arquivo tendo cuidado para manter a formatação padrão do JSON. Faça suas alterações, nomeie e conclua o commit criando uma nova branch. Prossiga criando o Pull Request, e aguarde que sua sugestão seja revisada pelo time responsável.
+Para alterar esses textos, você precisa:
+- alterar a seção `"feedbacks"` no arquivo `data/feedbacks.json`, tendo cuidado para manter a formatação padrão do JSON.
+- alterar / criar o arquivo com final `.slack` correspondente
+
+Faça suas alterações, nomeie e conclua o commit criando uma nova branch. Prossiga criando o Pull Request, e aguarde que sua sugestão seja revisada pelo time responsável.
 
 ## Como rodar localmente
 
