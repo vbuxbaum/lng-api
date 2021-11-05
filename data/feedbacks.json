@@ -1,6 +1,6 @@
 {
   "default_text": {
-    "intro":"Olá <@<user_id>> :green_heart:! Escutei você falando *<found_word>*",
+    "intro":"Olá <@<user_id>> :green_heart:! Reparei você escrevendo *<found_word>*",
     "explanation": ":eyes: Olha só: <feedback>",
     "goodbye": "#VQV"
   },
