@@ -19,20 +19,20 @@ Para alterar esses textos, basta alterar o arquivo tendo cuidado para manter a f
 
 ### Criando / Alterando um feedback
 
-No arquivo `data/feedbacks.json` temos a seção `"feedbacks"` que é a relação `expressão a ser evitada` <> `padrão do feedback para a expressão`.
+No arquivo `data/feedbacks.json` temos a seção `"feedbacks"` que é a relação `expressão a ser evitada` <> `feedback para a expressão, quando usada`.
 
 No exemplo abaixo, as expressões `denegrir`, `denegrindo` e `denegriu` terão o mesmo texto de feedback (representado por `denegrir`), e a expressão `os estudantes` terá outro texto de feedback (representado por `os_estudantes`).
 
 ```json
 "feedbacks": {
-    "denegrir": "denegrir",
-    "denegrindo": "denegrir",
-    "denegriu": "denegrir",
-    "os estudantes": "os_estudantes"
+    "denegrir": "denegrir.slack",
+    "denegrindo": "denegrir.slack",
+    "denegriu": "denegrir.slack",
+    "os estudantes": "os_estudantes.slack"
 }
 ```
 
-Os termos `os_estudantes` e `denegrir` fazem referência aos arquivos `data/os_estudantes.slack` e `data/denegrir.slack`, que armazenam o texto que será usado como feedback na resposta do robô.
+Os termos `os_estudantes.slack` e `denegrir.slack` fazem referência aos arquivos `data/os_estudantes.slack` e `data/denegrir.slack`, que armazenam o texto que será usado como feedback na resposta do robô.
 
 O texto nos arquivos com final `.slack` podem conter [formatação](https://api.slack.com/reference/surfaces/formatting) como negrito, itálico, emojis, links, etc.
 
