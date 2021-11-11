@@ -2,15 +2,19 @@ import json
 
 
 class Feedbacks:
-    def __init__(self):
-        self.load_feedbacks()
+    DATA_PATH = "data/"
+    FEEDBACKS_PATH = DATA_PATH + "feedbacks.json"
 
-    def get_avoided_expressions(self) -> list:
+    def __init__(self):
+        self._load_feedbacks()
+
+    def _get_avoided_expressions(self) -> list:
         return list(self.__feedbacks.keys())
 
-    def load_feedbacks(self) -> None:
+    def _load_feedbacks(self) -> None:
+        print("loading feedbacks...")
         try:
-            with open("data/feedbacks.json") as feedbacks_file:
+            with open(self.FEEDBACKS_PATH) as feedbacks_file:
                 full_dict = json.load(feedbacks_file)
                 self.__feedbacks = full_dict["feedbacks"]
                 self.__default_text = full_dict["default_text"]
@@ -24,10 +28,12 @@ class Feedbacks:
     def find_avoided_expression(self, text_message: str) -> str:
 
         clean_message = "".join(
-            c.lower() for c in text_message if c.isalnum() or c == " "
+            char.lower()
+            for char in text_message
+            if char.isalnum() or char == " "
         )
 
-        for avoided_expression in self.get_avoided_expressions():
+        for avoided_expression in self._get_avoided_expressions():
             if avoided_expression.lower() in clean_message:
                 return avoided_expression.lower()
 
@@ -50,7 +56,7 @@ class Feedbacks:
         )
 
     def _build_explanation(self, found_word: str) -> str:
-        feedback_path = f"data/{self.__feedbacks[found_word]}.slack"
+        feedback_path = self.DATA_PATH + self.__feedbacks[found_word]
 
         with open(feedback_path) as feedback_file:
             feedback_text = feedback_file.read()
@@ -61,8 +67,3 @@ class Feedbacks:
 
     def _build_goodbye(self) -> str:
         return self.__default_text["goodbye"]
-
-
-if __name__ == "__main__":
-    feedback_instance = Feedbacks()
-    feedback_instance.get_feedbacks()
