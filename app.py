@@ -12,10 +12,8 @@ env_path = Path(".") / ".env"
 load_dotenv(dotenv_path=env_path)
 
 
-BUX_USER_ID = "U01JGS5RE1M"
-TEST_CHANNEL = "C029JE2720M"
+RESTRICT_CHANNELS = os.environ["RESTRICT_CHANNELS"].split(",")
 TESTER_USER_IDS = os.environ["TESTER_USER_IDS"].split(",")
-
 
 app = Flask(__name__)
 slack_event_adapter = SlackEventAdapter(
@@ -23,9 +21,11 @@ slack_event_adapter = SlackEventAdapter(
 )
 
 client = slack.WebClient(token=os.environ["SLACK_BOT_TOKEN"])
+
 if (flask_env := os.environ["FLASK_ENV"]) != "production":
+    DEV_USER_ID = os.environ["DEV_USER_ID"]
     client.chat_postMessage(
-        channel=BUX_USER_ID,
+        channel=DEV_USER_ID,
         text=f":rocket: Iniciando em ambiente <{flask_env}>...",
     )
 
@@ -37,7 +37,10 @@ def listen_messages(payload):
     event = payload.get("event", {})
 
     user_id = event.get("user")
-    if user_id not in TESTER_USER_IDS:
+    if (
+        user_id not in TESTER_USER_IDS
+        or event.get("channel") in RESTRICT_CHANNELS
+    ):
         return
 
     text_message: str = event["text"]
