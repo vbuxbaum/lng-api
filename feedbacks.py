@@ -28,7 +28,9 @@ class Feedbacks:
     def find_avoided_expression(self, text_message: str) -> str:
 
         clean_message = "".join(
-            c.lower() for c in text_message if c.isalnum() or c == " "
+            char.lower()
+            for char in text_message
+            if char.isalnum() or char == " "
         )
 
         for avoided_expression in self._get_avoided_expressions():
@@ -65,8 +67,3 @@ class Feedbacks:
 
     def _build_goodbye(self) -> str:
         return self.__default_text["goodbye"]
-
-
-if __name__ == "__main__":
-    feedback_instance = Feedbacks()
-    feedback_instance.get_feedbacks()
