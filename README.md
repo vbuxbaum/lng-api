@@ -8,7 +8,7 @@ Integração com Slack para feedbacks sobre uso de termos específicos, que são
 
 ### Alterando o texto padrão
 
-No arquivo `data/feedbacks.json` temos 3 pedaços de texto dentro da seção `"default_text"`, que representam a estrutura base da mensagem que o robô envia quando dá um feedback:
+No arquivo `feedbacks.json` temos 3 pedaços de texto dentro da seção `"default_text"`, que representam a estrutura base da mensagem que o robô envia quando dá um feedback:
 - `intro`: Pequena saudação marcando (`<@<user_id>>`) a pessoa que escreveu a mensagem original, e citando (`<found_word>`) a expressão que foi usada indevidamente
 - `explanation`: Pequeno início para o parágrafo (`<feedback>`) que explica a motivação do feedback àquela expressão.
 - `goodbye`: Finalização da mensagem
@@ -19,28 +19,34 @@ Para alterar esses textos, basta alterar o arquivo tendo cuidado para manter a f
 
 ### Criando / Alterando um feedback
 
-No arquivo `data/feedbacks.json` temos a seção `"feedbacks"` que é a relação `expressão a ser evitada` <> `feedback para a expressão, quando usada`.
+No arquivo `feedbacks.json` temos a seção `"feedbacks"` que é a relação `expressão a ser evitada` <> `feedback para a expressão, quando usada`.
 
 No exemplo abaixo, as expressões `denegrir`, `denegrindo` e `denegriu` terão o mesmo texto de feedback (representado por `denegrir`), e a expressão `os estudantes` terá outro texto de feedback (representado por `os_estudantes`).
 
 ```json
 "feedbacks": {
-    "denegrir": "denegrir.slack",
-    "denegrindo": "denegrir.slack",
-    "denegriu": "denegrir.slack",
-    "os estudantes": "os_estudantes.slack"
+    "denegrir": "denegrir",
+    "denegrindo": "denegrir",
+    "denegriu": "denegrir",
+    "os estudantes": "os_estudantes"
 }
 ```
 
-Os termos `os_estudantes.slack` e `denegrir.slack` fazem referência aos arquivos `data/os_estudantes.slack` e `data/denegrir.slack`, que armazenam o texto que será usado como feedback na resposta do robô.
+Os termos `os_estudantes` e `denegrir` fazem referência aos trechos `os_estudantes.slack` e `denegrir` dentro da seção `explanation_patterns` no mesmo arquivo, que armazenam o texto que será usado como feedback na resposta do robô.
 
-O texto nos arquivos com final `.slack` podem conter [formatação](https://api.slack.com/reference/surfaces/formatting) como negrito, itálico, emojis, links, etc.
+Os textos na seção `explanation_patterns` podem conter [formatação](https://api.slack.com/reference/surfaces/formatting):
+  - Utilize * * para deixar em **Negrito**
+  - Utilize _ _ para deixar em _itálico_
+  - Utilize ~ ~ para riscar um <s>texto</s>
+  - Utilize ` `` ` para destacar o `texto`
+  - Utilize <https://www.google.com | criar um link> para [criar um link](https://www.google.com)
+  - Para usar emotes, basta adicionar :nome-do-emote: ( ⚠️ Se for um emote padrão do Slack, insira o nome em inglês. Ex: `green_heart` ao invés de `coração_verde` para obter 💚)
 
 Para alterar esses textos, você precisa:
-- alterar a seção `"feedbacks"` no arquivo `data/feedbacks.json`, tendo cuidado para manter a formatação padrão do JSON.
-- alterar / criar o arquivo com final `.slack` correspondente
+- alterar a seção `"feedbacks"` no arquivo `feedbacks.json`, tendo cuidado para manter a formatação padrão do JSON.
+- alterar / criar o trecho correspondente na seção `explanation_patterns`  
 
-Faça suas alterações, nomeie e conclua o commit criando uma nova branch. Prossiga criando o Pull Request, e aguarde que sua sugestão seja revisada pelo time responsável.
+Faça suas alterações, nomeie e conclua o commit criando uma nova branch. Prossiga criando o Pull Request, e aguarde que sua sugestão seja revisada.
 
 ## Como rodar localmente
 

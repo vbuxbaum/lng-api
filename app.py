@@ -38,8 +38,9 @@ def listen_messages(payload):
 
     user_id = event.get("user")
     if (
-        user_id not in TESTER_USER_IDS  # remover essa linha para responder qualquer pessoa
-        or event.get("channel") in RESTRICT_CHANNELS
+        event.get("channel") in RESTRICT_CHANNELS
+        # REMOVER CONDIÇÃO ABAIXO no dia do lançamento oficial
+        or user_id not in TESTER_USER_IDS
     ):
         return
 

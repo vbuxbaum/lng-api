@@ -1,0 +1,23 @@
+{
+  "default_text": {
+    "intro": "Olá <@<user_id>> :green_heart:! Reparei você escrevendo \"*<found_word>*\"",
+    "explanation": ":eyes: Olha só: <feedback>",
+    "goodbye": "#VQV"
+  },
+  "feedbacks": {
+    "denegrir": "denegrir",
+    "denegrindo": "denegrir",
+    "denegriu": "denegrir",
+    "os estudantes": "os_estudantes",
+    "tranquilos e tranquilas": "tranquilos_as",
+    "tranquilas e tranquilos": "tranquilos_as",
+    "mulato": "mulato_a",
+    "mulata": "mulato_a"
+  },
+  "explanation_patterns": {
+    "denegrir": "o verbo \"_denegrir_\" tem origem racista, e você pode substituir por \"_difamar_\"",
+    "mulato_a": "os termos \"_mulato_\" e \"_mulata_\" tem origem racista, e você pode substituir por \"_preto_/_preta_\" ou \"_negro_/_negra_\" (há dissonâncias acerca do uso do termo \"_negro_\", então, sempre leve em consideração como a pessoa quer ser representada).",
+    "os_estudantes": "caso esteja se referindo a um grupo de estudantes da Trybe não composto apenas por homens, é possível se adequar melhor à <https://playbook.betrybe.com/docs/companhia/comunicacao/lng_guide|Linguagem Neutra de Gênero>. Nesse caso você poderia remover o artigo masculino ou substituir por \"_as pessoas estudantes_\"" ,
+    "tranquilos_as": "quando falamos ou escrevemos algo como \"_fiquem tranquilos e tranquilas_\", é possível se adequar melhor à <https://playbook.betrybe.com/docs/companhia/comunicacao/lng_guide|Linguagem Neutra de Gênero>. Nesse caso você poderia substituir por \"_tenham tranquilidade_\"."
+  }
+}
