@@ -15,6 +15,8 @@ class Feedbacks:
         self.__default_text = full_dict["default_text"]
         self.__explanations = full_dict["explanation_patterns"]
 
+        print("Feedbacks loaded!")
+
     @classmethod
     def _read_feedbacks_base(cls) -> dict:
         try:
