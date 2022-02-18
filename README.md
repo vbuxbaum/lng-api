@@ -94,11 +94,18 @@ python3 -i app.py
 Nesse momento o REPL (terminal interativo do Python) foi aberto. Aperte `ctrl+C` para cancelar a execução do app, mas sem sair do terminal do Python.
 
 Você verá o indicativo `>>>` para inserir um comando do Python, e então poderá utilizar o comando abaixo. 
-- Substitua `SEU_USER_ID` pelo seu [ID de usuário do Slack](https://www.workast.com/help/articles/61000165203/) entre aspas. 
-- Substitua `SUA_MENSAGEM` pelo texto da mensagem que gostaria de testar.
+- Substitua `SEU_USER_ID` pelo seu [ID de usuário do Slack](https://www.workast.com/help/articles/61000165203/), entre aspas. 
+- Substitua `SUA_MENSAGEM` pelo texto da mensagem que gostaria de testar, entre aspas.
 
 ```python
 >>> listen_messages({"event":{"user": SEU_USER_ID, "text": SUA_MENSAGEM}})
 ```
 
 
+# EXTRA EXTRA EXTRA
+
+- precisa usar o docker-compose
+Para fazer o build: `docker-compose build web`
+Para rodar os testes: `docker-compose run web python3 -m pytest -v`
+Para subir a API: `docker-compose up web`
+Para acessear o container da API `docker-compose run --entrypoint bash web`

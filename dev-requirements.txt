@@ -2,3 +2,4 @@
 
 black==21.9b0
 flake8==4.0.1
+pytest
