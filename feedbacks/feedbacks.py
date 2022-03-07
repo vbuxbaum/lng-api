@@ -1,5 +1,4 @@
 import json
-
 from feedbacks.text_analyzer import TextAnalyzer
 
 
@@ -35,43 +34,29 @@ class Feedbacks:
 
     def find_avoided_expression(self, text_message: str) -> str:
 
-        clean_message = self.clear_message(text_message)
-        analyzer = TextAnalyzer(clean_message)
+        analyzer = TextAnalyzer(text_message)
 
-        for avoided_expression in self._get_avoided_expressions():
-            if avoided_expression in clean_message:
-                return (
-                    avoided_expression
-                    if avoided_expression.count(" ") != 1
-                    else analyzer.check_gender_neutrality(avoided_expression)
-                )
+        for avoided_expression, feedback_pattern in self.__feedbacks.items():
+            found_expression = analyzer.check_for_avoided_expression(
+                avoided_expression
+            )
+
+            if found_expression:
+                return found_expression, feedback_pattern
 
         return None
 
-    def clear_message(self, text_message):
-        try:
-            clean_message = "".join(
-                char
-                for char in text_message.lower()
-                if char.isalnum() or char == " "
-            )
-        except AttributeError:
-            raise TypeError(
-                f"Argument needs to be a string, not {type(text_message)}"
-            )
-
-        return clean_message
-
-    def _get_avoided_expressions(self) -> list:
-        return list(self.__feedbacks.keys())
-
     def build_feedback(
-        self, found_word: str, user_id: str, thread_link: str
+        self,
+        found_expression: str,
+        feedback_pattern: str,
+        user_id: str,
+        thread_link: str,
     ) -> str:
         return "\n\n".join(
             [
-                self._build_intro(found_word, user_id, thread_link),
-                self._build_explanation(found_word),
+                self._build_intro(found_expression, user_id, thread_link),
+                self._build_explanation(feedback_pattern),
                 self._build_goodbye(),
             ]
         )
@@ -86,14 +71,9 @@ class Feedbacks:
             .replace("<thread_link>", thread_link)
         )
 
-    def _build_explanation(self, found_word: str) -> str:
-        found_pattern = min(
-            pattern
-            for pattern in self.__feedbacks
-            if pattern in found_word
-        )
+    def _build_explanation(self, found_pattern: str) -> str:
 
-        feedback_text = self.__explanations[self.__feedbacks[found_pattern]]
+        feedback_text = self.__explanations[found_pattern]
 
         return self.__default_text["explanation"].replace(
             "<feedback>", feedback_text

@@ -1,43 +1,61 @@
 BAD_MESSAGES = [
     (
-        "os estudantes",
-        (
-            "Olá mundo! *ESSA* é uma mensagem de exemplo"
-            "considerando o uso do seguinte termo: os estudantes."
-        ),
+        ("muitooos estudantes ativos", "os_estudantes"),
+        "Sobre isso que são muitooos estudantes ativos e algo mais.",
     ),
     (
-        "muitos estudantes",
-        (
-            "Olá mundo! *ESSA* é uma mensagem de exemplo"
-            "considerando o uso do seguinte termo: muitos estudantes."
-        ),
+        ("estudantes aprovados", "os_estudantes"),
+        "Sobre estudantes aprovados e algo mais.",
     ),
     (
-        "poucos estudantes",
-        (
-            "Olá mundo! *ESSA* é uma mensagem de exemplo"
-            "considerando o uso do seguinte termo: *_poucos_* estudantes."
-        ),
+        ("muitos usuários", "os_usuarios"),
+        "Sobre termos muitos _usuarios_. e algo mais",
     ),
     (
-        "tranquilos e tranquilas",
-        (
-            "Olá mundo! ~ESSA~ é uma mensagem de exemplo"
-            "considerando o uso do seguinte termo: tranquilos e tranquilas."
-        ),
+        ("poucos usuários", "os_usuarios"),
+        "Sobre termos *poucos* usuarios e algo mais.",
+    ),
+    (
+        ("usuários desligados", "os_usuarios"),
+        "Sobre [usuários] desligados e algo mais.",
+    ),
+    (
+        ("poucos estudantes", "os_estudantes"),
+        "Sobre *_poucos estudantes_* e algo mais.",
+    ),
+    (
+        ("tranquilos e tranquilas", "tranquilos_as"),
+        "Sobre estarem tranquilos e tranquilas e algo mais",
+    ),
+    (
+        ("denegriu", "denegrir"),
+        "Sobre alguem que denegriu e algo mais",
+    ),
+    (
+        ("alguns estudantes", "os_estudantes"),
+        "Sobre alguns estudantes e algo mais.",
+    ),
+    (
+        ("instrutores", "os_instrutores"),
+        "Sobre somente instrutores e algo mais.",
+    ),
+    (
+        ("usuários", "os_usuarios"),
+        "Sobre somente serem usuários e algo mais.",
+    ),
+    (
+        ("estudantes campeões", "os_estudantes"),
+        "Estudantes campeões testando no início.",
     ),
 ]
 
 GOOD_MESSAGES = [
-    (
-        "Olá mundo! *ESSA* é uma mensagem de exemplo"
-        "considerando o uso do seguinte termo: identificarmos estudantes."
-    ),
-    (
-        "Olá mundo! *ESSA* é uma mensagem de exemplo"
-        "considerando o uso do seguinte termo: comunicamos estudantes."
-    ),
-    ("Olá mundo! ~ESSA~ é uma mensagem de exemplo"),
-    ("Olá mundo! ~ESSA~ é uma mensagem de exemplo"),
+    ("Sobre identificarmos estudantes."),
+    ("Sobre dizer que nós comunicamos estudantes."),
+    ("Sobre estudantes ativas não há problema"),
+    ("Sobre muitos. Estudantes não deveriam ser problema"),
+    ("Sobre Estudantes. Ativos não deveriam ser problema"),
+    ("Sobre emoji :green_heart: e pessoas instrutoras"),
+    ("Sobre estudantes campeãs"),
+    ("Estudantes não podem ter prejuízo com essa mensagem"),
 ]

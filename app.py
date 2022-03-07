@@ -31,17 +31,18 @@ def listen_messages(payload):
     if not should_send_feedback(message_event):
         return
 
-    found_expression = feedbacks_handler.find_avoided_expression(
+    found_expression_and_pattern = feedbacks_handler.find_avoided_expression(
         message_event.get("text")
     )
 
-    if not found_expression:
+    if not found_expression_and_pattern:
         return
 
     feedback_text = feedbacks_handler.build_feedback(
-        found_expression,
-        message_event.get("user"),
-        get_permalink(message_event),
+        found_expression=found_expression_and_pattern[0],
+        feedback_pattern=found_expression_and_pattern[1],
+        user_id=message_event.get("user"),
+        thread_link=get_permalink(message_event),
     )
 
     slack_client.chat_postMessage(

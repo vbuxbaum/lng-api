@@ -1,23 +1,24 @@
 import pytest
 from feedbacks.feedbacks import Feedbacks
+import tests.mocks.mocked_messages as mocked_msgs
 
 
 def test_instantiate_feedback_handler(feedback_handler):
     assert isinstance(feedback_handler, Feedbacks)
 
 
+@pytest.mark.parametrize("expression,bad_message", mocked_msgs.BAD_MESSAGES)
 def test_find_avoided_expressions_with_bad_messages(
-    bad_messages, feedback_handler
+    bad_message, expression, feedback_handler
 ):
-    for expression, message in bad_messages:
-        assert feedback_handler.find_avoided_expression(message) == expression
+    assert feedback_handler.find_avoided_expression(bad_message) == expression
 
 
+@pytest.mark.parametrize("good_message", mocked_msgs.GOOD_MESSAGES)
 def test_find_avoided_expressions_with_good_messages(
-    good_messages, feedback_handler
+    good_message, feedback_handler
 ):
-    for message in good_messages:
-        assert feedback_handler.find_avoided_expression(message) is None
+    assert feedback_handler.find_avoided_expression(good_message) is None
 
 
 def test_find_avoided_expressions_with_invalid_parameters(feedback_handler):

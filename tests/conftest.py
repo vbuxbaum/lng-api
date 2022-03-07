@@ -1,5 +1,7 @@
-from mocks import mocked_messages
+import random
+import tests.mocks.mocked_messages as mocked_msgs
 from feedbacks.feedbacks import Feedbacks
+from feedbacks.text_analyzer import TextAnalyzer
 import pytest
 
 
@@ -10,17 +12,17 @@ def feedback_handler():
     return Feedbacks()
 
 
-@pytest.fixture(scope="module")
-def bad_messages():
-    """Examples of messages containing avoided expression
-    Format: list[tuple(avoided_expression, message_example)]"""
-
-    return mocked_messages.BAD_MESSAGES
+@pytest.fixture()
+def random_good_message():
+    return random.choice(mocked_msgs.GOOD_MESSAGES)
 
 
-@pytest.fixture(scope="module")
-def good_messages():
-    """Examples of messages containing avoided expression
-    Format: list[message_example]"""
+@pytest.fixture()
+def random_bad_message():
+    return random.choice(mocked_msgs.BAD_MESSAGES)
 
-    return mocked_messages.GOOD_MESSAGES
+
+@pytest.fixture()
+def analyzer_instance():
+    raw_message = "verificamos pessoas estudantes comunicando usuários ativos"
+    return TextAnalyzer(raw_message)
