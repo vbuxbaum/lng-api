@@ -29,7 +29,6 @@ def listen_messages(payload):
     message_event = payload.get("event", {})
 
     if not should_send_feedback(message_event):
-        print("wtf")
         return
 
     found_expression_and_pattern = feedbacks_handler.find_avoided_expression(
