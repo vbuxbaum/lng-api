@@ -29,6 +29,7 @@ def listen_messages(payload):
     message_event = payload.get("event", {})
 
     if not should_send_feedback(message_event):
+        print("wtf")
         return
 
     found_expression_and_pattern = feedbacks_handler.find_avoided_expression(
@@ -45,9 +46,23 @@ def listen_messages(payload):
         thread_link=get_permalink(message_event),
     )
 
-    slack_client.chat_postMessage(
-        channel=message_event.get("user"), text=feedback_text
-    )
+    send_ephemeral_msg(message_event, feedback_text)
+
+
+def send_ephemeral_msg(message_event, feedback_text):
+    try:
+        slack_client.chat_postEphemeral(
+            channel=message_event.get("channel"),
+            thread_ts=message_event.get("thread_ts"),
+            user=message_event.get("user"),
+            text=feedback_text,
+        )
+    except slack_sdk.errors.SlackApiError as e:
+        if e.response["error"] == "not_in_channel":
+            slack_client.conversations_join(
+                channel=message_event.get("channel")
+            )
+            send_ephemeral_msg(message_event, feedback_text)
 
 
 def get_permalink(message_event):
