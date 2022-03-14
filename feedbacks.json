@@ -2,7 +2,7 @@
   "default_text": {
     "intro": "Olá <@<user_id>> :green_heart:! Reparei você escrevendo \"*<found_word>*\" <<thread_link>|aqui>",
     "explanation": ":eyes: Olha só: <feedback>",
-    "goodbye": "Legal né?! Ah, se esse feedback foi equivocado <https://github.com/betrybe/slack-writing-feedbacks/issues/new|registre o problema aqui>. #VQV"
+    "goodbye": "Legal né?! Ah, se esse feedback foi equivocado <https://github.com/betrybe/slack-writing-feedbacks/issues/new?assignees=vbuxbaum&labels=&template=feedback-incorreto.md&title=%5BBUG%5D+Feedback+incorreto+sobre+%3CPREENCHA+AQUI%3E|registre o problema aqui>. #VQV"
   },
   "feedbacks": {
     "denegrir": "denegrir",
