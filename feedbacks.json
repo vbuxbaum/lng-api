@@ -9,6 +9,7 @@
     "denegrindo": "denegrir",
     "denegriu": "denegrir",
     "os estudantes": "os_estudantes",
+    "os alunos": "os_alunos",
     "os usuários": "os_usuarios",
     "os instrutores": "os_instrutores",
     "os especialistas": "os_especialistas",
@@ -19,6 +20,7 @@
     "denegrir": "o verbo \"_denegrir_\" tem origem racista, e você pode substituir por \"_difamar_\". Em breve teremos um Guia de Linguagem Antirracista com essa e outras referências :relaxed:",
     "os_usuarios": "caso esteja se referindo a um grupo de pessoas não composto apenas por homens, é possível se adequar melhor à <https://playbook.betrybe.com/docs/companhia/comunicacao/lng_guide|Linguagem Neutra de Gênero>. Nesse caso você poderia substituir \"_usuários_\" por \"_pessoas usuárias_\" ou \"_pessoas que usam_\".",
     "os_estudantes": "caso esteja se referindo a um grupo de estudantes da Trybe não composto apenas por homens, é possível se adequar melhor à <https://playbook.betrybe.com/docs/companhia/comunicacao/lng_guide|Linguagem Neutra de Gênero>. Nesse caso você poderia remover o artigo masculino ou substituir \"_estudantes_\" por \"_pessoas estudantes_\"",
+    "os_alunos": "caso esteja se referindo a pessoas que estudam na Trybe, lembre de usar o termo \"_estudantes_\". Além disso, caso esteja se referindo a um grupo de pessoas não composto apenas por homens, é possível se adequar melhor à <https://playbook.betrybe.com/docs/companhia/comunicacao/lng_guide|Linguagem Neutra de Gênero>. Nesse caso você poderia remover o artigo masculino ou substituir \"_estudantes_\" por \"_pessoas estudantes_\"",
     "os_instrutores": "caso esteja se referindo a um grupo de pessoas não composto apenas por homens, é possível se adequar melhor à <https://playbook.betrybe.com/docs/companhia/comunicacao/lng_guide|Linguagem Neutra de Gênero>. Nesse caso você poderia remover o artigo masculino ou substituir \"_instrutores_\" por \"_pessoas instrutoras_\"",
     "os_especialistas": "caso esteja se referindo a um grupo de pessoas não composto apenas por homens, é possível se adequar melhor à <https://playbook.betrybe.com/docs/companhia/comunicacao/lng_guide|Linguagem Neutra de Gênero>. Nesse caso você poderia remover o artigo masculino ou substituir \"_especialistas_\" por \"_pessoas especialistas_\"",
     "tranquilos_as": "quando falamos ou escrevemos algo como \"_fiquem tranquilos e tranquilas_\", é possível se adequar melhor à <https://playbook.betrybe.com/docs/companhia/comunicacao/lng_guide|Linguagem Neutra de Gênero>. Nesse caso você poderia substituir por \"_tenham tranquilidade_\"."
