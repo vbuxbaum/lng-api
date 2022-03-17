@@ -36,48 +36,79 @@ class Feedbacks:
 
         analyzer = TextAnalyzer(text_message)
 
+        result = []
         for avoided_expression, feedback_pattern in self.__feedbacks.items():
             found_expression = analyzer.check_for_avoided_expression(
                 avoided_expression
             )
 
             if found_expression:
-                return found_expression, feedback_pattern
+                result.append((found_expression, feedback_pattern))
 
-        return None
+        return result
 
     def build_feedback(
         self,
-        found_expression: str,
-        feedback_pattern: str,
+        expression_and_pattern: list,
         user_id: str,
         thread_link: str,
     ) -> str:
+        expressions = [expression for expression, _ in expression_and_pattern]
+        patterns = [pattern for _, pattern in expression_and_pattern]
+
         return "\n\n".join(
             [
-                self._build_intro(found_expression, user_id, thread_link),
-                self._build_explanation(feedback_pattern),
+                self._build_intro(expressions, user_id, thread_link),
+                self._build_explanation(patterns),
                 self._build_goodbye(),
             ]
         )
 
     def _build_intro(
-        self, found_word: str, user_id: str, thread_link: str
+        self, found_expressions: str, user_id: str, thread_link: str
     ) -> str:
+
+        expressions_to_mention = self.__expressions_to_mention(
+            found_expressions
+        )
+
         return (
             self.__default_text["intro"]
             .replace("<user_id>", user_id)
-            .replace("<found_word>", found_word)
+            .replace("<found_expressions>", expressions_to_mention)
             .replace("<thread_link>", thread_link)
         )
 
-    def _build_explanation(self, found_pattern: str) -> str:
+    def __expressions_to_mention(self, expressions):
+        expressions_to_mention = f'"*{expressions[0]}*"'
 
-        feedback_text = self.__explanations[found_pattern]
+        if len(expressions) == 1:
+            return expressions_to_mention
+
+        for expression in expressions[1:-1]:
+            expressions_to_mention += f', "*{expression}*"'
+
+        return expressions_to_mention + f' e "*{expressions[-1]}*"'
+
+    def _build_explanation(self, patterns: str) -> str:
+
+        feedbacks_to_give = self.__feedbacks_to_give(patterns)
 
         return self.__default_text["explanation"].replace(
-            "<feedback>", feedback_text
+            "<feedback>", feedbacks_to_give
         )
+
+    def __feedbacks_to_give(self, patterns):
+        if len(patterns) == 1:
+            return self.__explanations[patterns[0]]
+
+        feedbacks_to_give = "\n"
+        for pattern in patterns:
+            feedbacks_to_give += (
+                f"\n:arrow_right: {self.__explanations[pattern]}"
+            )
+
+        return feedbacks_to_give
 
     def _build_goodbye(self) -> str:
         return self.__default_text["goodbye"]

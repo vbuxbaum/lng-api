@@ -39,8 +39,7 @@ def listen_messages(payload):
         return
 
     feedback_text = feedbacks_handler.build_feedback(
-        found_expression=found_expression_and_pattern[0],
-        feedback_pattern=found_expression_and_pattern[1],
+        expression_and_pattern=found_expression_and_pattern,
         user_id=message_event.get("user"),
         thread_link=get_permalink(message_event),
     )
