@@ -1,36 +1,27 @@
 # slack-writing-feedbacks
 
-Integração com Slack para feedbacks sobre uso de termos específicos que são inadequados no Workspace.
+Essa jovem API faz analises em textos visando uma linguagem neutra de gênero.
 
-> Feito e constantemente atualizado pelo time Trybe com Python, Flask e 💚
+Uma escrita neutra de gênero evita: 
+- **generalizações masculinas** como  "_João e Maria são trabalhadores_", sugerindo "_João e Maria são pessoas trabalhadoras_";
+- **o gênero masculino implícito** como "_precisamos pensar no usuário do aplicativo_", sugerindo "_precisamos pensar em quem usa o aplicativo_"
 
+Essa API não sugere formas não-cultas da língua portuguesa (_ex: todes, elu, amigxs, usuári@s, etc_).
+
+> Feito com Python, Flask e 💚
+
+<!--
 # Como contribuir
 
 ## Corrigir ou melhorar o texto dos feedbacks existentes
 
 Se você identificou um problema ou quer melhorar o texto de um feedback enviado pelo robô, [abra uma issue aqui](https://github.com/betrybe/slack-writing-feedbacks/issues) explicando a proposta de alteração. Nosso time avaliará assim que possível!
 
-## Adicionar ou remover expressões que geram feedbacks
-
-Como o nosso Bot é uma ferramenta para nos ajudar a termos uma comunicação mais alinhada com nossos [guias de comunicação](https://playbook.betrybe.com/docs/companhia/comunicacao/), toda proposta de novo feedback deve estar alinhada e embasada nesses materiais.
-
-Se a expressão que deseja adicionar/remover está alinhada e embasada em nossos guias, basta [abrir uma issue aqui](https://github.com/betrybe/slack-writing-feedbacks/issues) explicando a proposta e citando a referência. Nosso time avaliará assim que possível!
-
-Se a expressão que deseja adicionar/remover **_não_** está alinhada e embasada em nossos guias, você deve abrir uma thread de `[DISCUSSÃO]` no canal [#func-responsabilidade-governança](https://betrybe.slack.com/archives/C02TSA5E6MU) marcando [@Mariana Lopes](https://betrybe.slack.com/archives/D01QYAHALEM).
-
 ## Alterar o código da aplicação
 
 Se você quer resolver uma issue de Bug ou Feature alterando o código da aplicação, entre em contato com [@Bux](https://betrybe.slack.com/archives/D01K3QBS4F6) para receber os devidos alinhamentos e o acesso ☺️
 
-# Como o Bot funciona
-```mermaid
-flowchart LR
-    N(Nova mensagem no Slack) -->|avisa o Bot| B(Software avalia a mensagem)
-    B --> E{Expressão inadequada?}
-    E -->|Sim| F(Constrói Feedback)
-    E -->|Não| Encerra((Fim))
-    F -->|Envia ao Slack| R(Feedback dado)
-```
+
 
 Utilizamos a Events API do Slack para receber eventos de novas mensagens que circulam no Workspace. Mensagens que ocorrem em canais privados e públicos são notificadas ao Bot, e serão analisadas.
 
@@ -134,19 +125,4 @@ python3 -i app.py
 
 Nesse momento o REPL (terminal interativo do Python) foi aberto. Aperte `ctrl+C` para cancelar a execução do app, mas sem sair do terminal do Python.
 
-Você verá o indicativo `>>>` para inserir um comando do Python, e então poderá utilizar o comando abaixo. 
-- Substitua `SEU_USER_ID` pelo seu [ID de usuário do Slack](https://www.workast.com/help/articles/61000165203/), entre aspas. 
-- Substitua `SUA_MENSAGEM` pelo texto da mensagem que gostaria de testar, entre aspas.
-
-```python
->>> listen_messages({'event': {'type': 'message', 'text': SUA_MENSAGEM, 'user': SEU_USER, 'thread_ts': '1633639960.411500','ts': '1633639960.411500','channel': CANAL_MENSAGEM}})
-```
-
-
-# EXTRA EXTRA EXTRA
-
-- precisa usar o docker-compose
-Para fazer o build: `docker-compose build web`
-Para rodar os testes: `docker-compose run web python3 -m pytest -v`
-Para subir a API: `docker-compose up web`
-Para acessear o container da API `docker-compose run --entrypoint bash web`
+-->
