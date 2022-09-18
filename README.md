@@ -1,6 +1,6 @@
-# lng-api
+# LNG API
 
-Essa jovem API faz analises em textos visando uma linguagem neutra de gênero.
+Essa jovem API faz analises em textos visando uma Linguagem Neutra de Gênero.
 
 Uma escrita neutra de gênero evita: 
 - **generalizações masculinas** como  "_João e Maria são trabalhadores_", sugerindo "_João e Maria são pessoas trabalhadoras_";
