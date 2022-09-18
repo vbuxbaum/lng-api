@@ -6,7 +6,7 @@ Uma escrita neutra de gênero evita:
 - **generalizações masculinas** como  "_João e Maria são trabalhadores_", sugerindo "_João e Maria são pessoas trabalhadoras_";
 - **o gênero masculino implícito** como "_precisamos pensar no usuário do aplicativo_", sugerindo "_precisamos pensar em quem usa o aplicativo_"
 
-Essa API não sugere formas não-cultas da língua portuguesa (_ex: todes, elu, amigxs, usuári@s, etc_).
+As sugestões dessa API respeitam a norma culta da língua portuguesa, ou seja, não considera termos utilizados apenas socialmente (_ex: todes, elu, amigxs, usuári@s, etc_).
 
 > Feito com Python, FastAPI e 💚
 
