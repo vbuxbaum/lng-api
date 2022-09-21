@@ -1,7 +1,16 @@
+from threading import activeCount
 import joblib
 import nltk
+import ssl
 from nltk import TokenSearcher, word_tokenize
 from unidecode import unidecode
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
 nltk.download("punkt")
 
@@ -10,6 +19,7 @@ TAGGER = joblib.load("POS_tagger_brill.pkl")
 
 class TextAnalyzer:
     GENDER_MARKS = {"os", "ores", "ões", "ns", "ãos"}
+    DOUBLE_CHECK_WORDS = {"pessoa", "pessoas"}
 
     def __init__(self, text_message) -> None:
         self.raw_message = self.clear_message(text_message)
@@ -31,6 +41,9 @@ class TextAnalyzer:
         this_sufix = self.sufix_for(word_target)
 
         if not (this_prefix or this_sufix):
+            return None
+        
+        if this_prefix in self.DOUBLE_CHECK_WORDS:
             return None
 
         result = word_target
