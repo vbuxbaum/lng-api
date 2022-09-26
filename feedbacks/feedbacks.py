@@ -3,30 +3,54 @@ from feedbacks.text_analyzer import TextAnalyzer
 from pydantic import BaseModel
 
 
+class AnalyzerOptions(BaseModel):
+    feedbacks: dict
+    alternatives: dict
+
+    class Config:
+        allow_population_by_field_name = True
+        schema_extra = {
+            "example": {
+                "feedbacks": {
+                    "os amigos": "os_amigos",
+                    "os trabalhadores": "os_trabalhadores",
+                },
+                "alternatives": {
+                    "os_amigos": ["as amizades", "as pessoas amigas"],
+                    "os_trabalhadores": [
+                        "quem trabalha",
+                        "as pessoas trabalhadoras",
+                    ],
+                },
+            }
+        }
+
+
 class LNGReport(BaseModel):
-    used_expression: str = ""
-    expression_alternatives: list = []
+    used_expression: str
+    expression_alternatives: list
 
 
 class Feedbacks:
-    FEEDBACKS_PATH = "feedbacks.json"
+    def __init__(self, analyzer_options=None) -> None:
+        self.FEEDBACKS_PATH = "feedbacks.json"
+        self.load_feedbacks(analyzer_options)
 
-    def __init__(self) -> None:
-        self.load_feedbacks()
-
-    def load_feedbacks(self) -> None:
+    def load_feedbacks(self, analyzer_options) -> None:
         print("Loading feedbacks...")
-        full_dict = self._read_feedbacks_base()
+        if analyzer_options is None:
+            full_dict = self._read_feedbacks_base()
+        else:
+            full_dict = analyzer_options
 
         self.__feedbacks = full_dict["feedbacks"]
         self.__alternatives = full_dict["alternatives"]
 
         print("Feedbacks loaded!")
 
-    @classmethod
-    def _read_feedbacks_base(cls) -> dict:
+    def _read_feedbacks_base(self) -> dict:
         try:
-            with open(cls.FEEDBACKS_PATH) as feedbacks_file:
+            with open(self.FEEDBACKS_PATH) as feedbacks_file:
                 return json.load(feedbacks_file)
         except FileNotFoundError as e:
             raise FileNotFoundError(
@@ -49,13 +73,13 @@ class Feedbacks:
 
             if found_expression:
 
-                result.append(
-                    LNGReport(
-                        used_expression=found_expression,
-                        expression_alternatives=self.__alternatives[
-                            feedback_pattern
-                        ],
-                    )
+                report = LNGReport(
+                    used_expression=found_expression,
+                    expression_alternatives=self.__alternatives.get(
+                        feedback_pattern, []
+                    ),
                 )
+
+                result.append(report)
 
         return result

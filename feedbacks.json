@@ -1,6 +1,7 @@
 {
   "feedbacks": {
     "os estudantes": "os_estudantes",
+    "os alunos": "os_estudantes",
     "os usuários": "os_usuarios",
     "os instrutores": "os_instrutores",
     "os especialistas": "os_especialistas",
@@ -8,6 +9,9 @@
     "os inimigos": "os_inimigos",
     "os moradores": "os_moradores",
     "os criadores": "os_criadores",
+    "os agricultores": "os_agricultores",
+    "os produtores": "os_produtores",
+    "os consumidores": "os_consumidores",
     "os trabalhadores": "os_trabalhadores"
   },
   "alternatives": {
@@ -20,6 +24,9 @@
     "os_doutores": ["quem fez doutorado", "as pessoas doutoras"],
     "os_moradores": ["quem mora", "as pessoas moradoras", "pessoas que moram"],
     "os_criadores": ["quem criou", "quem cria", "as pessoas criadoras"],
+    "os_agricultores": ["quem agriculta", "as pessoas da agricultura", "as pessoas agricultoras"],
+    "os_produtores": ["quem produz", "as pessoas que produzem", "as pessoas produtoras"],
+    "os_consumidores": ["quem consome", "as pessoas que consomem", "as pessoas consumidoras"],
     "os_trabalhadores": ["quem trabalha", "as pessoas trabalhadoras"]
   }
 }
