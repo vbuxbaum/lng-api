@@ -1,6 +1,6 @@
-# slack-writing-feedbacks
+# LNG API
 
-Essa jovem API faz analises em textos visando uma linguagem neutra de gênero.
+Essa jovem API faz analises em textos visando uma Linguagem Neutra de Gênero.
 
 Uma escrita neutra de gênero evita: 
 - **generalizações masculinas** como  "_João e Maria são trabalhadores_", sugerindo "_João e Maria são pessoas trabalhadoras_";
@@ -8,7 +8,8 @@ Uma escrita neutra de gênero evita:
 
 Essa API não sugere alternativas informais da língua portuguesa (_ex: todes, elu, amigxs, usuári@s, etc_).
 
-> Feito com Python, Flask e 💚
+
+> Feito com Python, FastAPI e 💚
 
 ## Como o algoritmo funciona 
 
