@@ -6,9 +6,42 @@ Uma escrita neutra de gênero evita:
 - **generalizações masculinas** como  "_João e Maria são trabalhadores_", sugerindo "_João e Maria são pessoas trabalhadoras_";
 - **o gênero masculino implícito** como "_precisamos pensar no usuário do aplicativo_", sugerindo "_precisamos pensar em quem usa o aplicativo_"
 
-Essa API não sugere formas não-cultas da língua portuguesa (_ex: todes, elu, amigxs, usuári@s, etc_).
+Essa API não sugere alternativas informais da língua portuguesa (_ex: todes, elu, amigxs, usuári@s, etc_).
 
 > Feito com Python, Flask e 💚
+
+## Como o algoritmo funciona 
+
+A análise textual é feita utilizando a [bilioteca NLTK](https://www.nltk.org/) com o complemento [dessas POS-taggers para português](https://github.com/inoueMashuu/POS-tagger-portuguese-nltk) que possibilitam distinguir alguns termos entre verbo/adjetivo/substantivo/etc, e tornar a análise mais assertiva.
+
+
+## Como executar
+> Requisito: Python versão 3.8 ou mais recente
+
+Crie um ambiente virtual utilizando o módulo [venv](https://docs.python.org/pt-br/3/library/venv.html)
+
+```bash
+python3 -m venv .venv-swf
+```
+
+Ative o ambiente virtual criado
+
+```bash
+source .venv-swf/bin/activate
+```
+
+Instale as dependências
+
+```bash
+python3 -m pip install -r dev-requirements.txt
+```
+
+Suba a aplicação localmente com o comando
+
+```bash
+python3 -m uvicorn main:app --reload
+```
+
 
 <!--
 # Como contribuir
@@ -25,7 +58,6 @@ Se você quer resolver uma issue de Bug ou Feature alterando o código da aplica
 
 Utilizamos a Events API do Slack para receber eventos de novas mensagens que circulam no Workspace. Mensagens que ocorrem em canais privados e públicos são notificadas ao Bot, e serão analisadas.
 
-A análise textual é feita utilizando a [bilioteca NLTK](https://www.nltk.org/) com o complemento [dessas POS-taggers para português](https://github.com/inoueMashuu/POS-tagger-portuguese-nltk) que possibilitam distinguir alguns termos entre verbo/adjetivo/substantivo/etc, e tornar a análise mais assertiva.
 
 Na análise de termos como "os estudantes", usamos a seguinte lógica: 
 > Precisa haver a ocorrência de "estudantes" e uma das palavras que a cercam precisa (i) não ser um verbo e (ii) terminar com um marcador de plural masculino ("os", "res", "ões", "ns" ou "ãos").
