@@ -19,7 +19,7 @@ TAGGER = joblib.load("POS_tagger_brill.pkl")
 
 class TextAnalyzer:
     GENDER_MARKS = {"os", "ores", "ões", "ns", "ãos"}
-    DOUBLE_CHECK_WORDS = {"pessoa", "pessoas"}
+    NEUTRAL_MARK = {"pessoas"}
 
     def __init__(self, text_message) -> None:
         self.raw_message = self.clear_message(text_message)
