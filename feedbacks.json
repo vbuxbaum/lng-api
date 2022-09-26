@@ -11,6 +11,7 @@
     "os criadores": "os_criadores",
     "os agricultores": "os_agricultores",
     "os produtores": "os_produtores",
+    "os consumidores": "os_consumidores",
     "os trabalhadores": "os_trabalhadores"
   },
   "alternatives": {
@@ -25,6 +26,7 @@
     "os_criadores": ["quem criou", "quem cria", "as pessoas criadoras"],
     "os_agricultores": ["quem agriculta", "as pessoas da agricultura", "as pessoas agricultoras"],
     "os_produtores": ["quem produz", "as pessoas que produzem", "as pessoas produtoras"],
+    "os_consumidores": ["quem consome", "as pessoas que consomem", "as pessoas consumidoras"],
     "os_trabalhadores": ["quem trabalha", "as pessoas trabalhadoras"]
   }
 }
