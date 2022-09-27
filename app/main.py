@@ -1,6 +1,8 @@
 from typing import List
 from fastapi import FastAPI, Query
-from feedbacks.feedbacks import AnalyzerOptions, Feedbacks, LNGReport
+from app.data_model import AnalyzerOptions, LNGReport
+from app.feedback.analyzer_service import Feedbacks
+
 
 app = FastAPI(title="LNG API")
 
