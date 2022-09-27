@@ -1,7 +1,7 @@
 import random
 import tests.mocks.mocked_messages as mocked_msgs
-from feedbacks.feedbacks import Feedbacks
-from feedbacks.text_analyzer import TextAnalyzer
+from app.feedback.analyzer_service import Feedbacks
+from app.feedback.text_analyzer import TextAnalyzer
 import pytest
 
 

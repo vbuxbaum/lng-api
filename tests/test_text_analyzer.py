@@ -1,4 +1,4 @@
-from feedbacks.text_analyzer import TextAnalyzer
+from app.feedback.text_analyzer import TextAnalyzer
 
 
 def test_can_instantiate_analyzer(random_good_message, random_bad_message):
