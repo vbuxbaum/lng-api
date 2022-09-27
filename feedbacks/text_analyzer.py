@@ -52,8 +52,6 @@ class TextAnalyzer:
             result = result + " " + this_sufix
 
         if self.marks_dominant_gender(word_target) or result != word_target:
-            print(this_prefix, self.pos_tags.get(this_prefix, ""))
-            print(this_sufix, self.pos_tags.get(this_sufix, ""))
             return result
         else:
             return None
