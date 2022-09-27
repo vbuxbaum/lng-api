@@ -1,7 +1,15 @@
 import joblib
 import nltk
+import ssl
 from nltk import TokenSearcher, word_tokenize
 from unidecode import unidecode
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
 nltk.download("punkt")
 
@@ -10,6 +18,7 @@ TAGGER = joblib.load("POS_tagger_brill.pkl")
 
 class TextAnalyzer:
     GENDER_MARKS = {"os", "ores", "ões", "ns", "ãos"}
+    NEUTRAL_MARK = {"pessoas"}
 
     def __init__(self, text_message) -> None:
         self.raw_message = self.clear_message(text_message)
@@ -33,6 +42,9 @@ class TextAnalyzer:
         if not (this_prefix or this_sufix):
             return None
 
+        if this_prefix in self.NEUTRAL_MARK:
+            return None
+
         result = word_target
         if this_prefix and self.marks_dominant_gender(this_prefix):
             result = this_prefix + " " + result
@@ -40,6 +52,8 @@ class TextAnalyzer:
             result = result + " " + this_sufix
 
         if self.marks_dominant_gender(word_target) or result != word_target:
+            print(this_prefix, self.pos_tags.get(this_prefix, ""))
+            print(this_sufix, self.pos_tags.get(this_sufix, ""))
             return result
         else:
             return None
