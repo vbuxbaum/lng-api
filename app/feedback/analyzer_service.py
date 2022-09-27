@@ -8,6 +8,10 @@ class Feedbacks:
         self.FEEDBACKS_PATH = "feedbacks.json"
         self.load_options(analyzer_options)
 
+    @property
+    def options(self):
+        return self.__options
+
     def load_options(self, analyzer_options) -> None:
         print("Loading feedbacks...")
 
@@ -40,7 +44,7 @@ class Feedbacks:
         for (
             avoided_expression,
             feedback_pattern,
-        ) in self.__options.feedbacks.items():
+        ) in self.options.feedbacks.items():
 
             found_expression = analyzer.check_for_avoided_expression(
                 avoided_expression
@@ -49,9 +53,7 @@ class Feedbacks:
             if not found_expression:
                 continue
 
-            alternatives = self.__options.alternatives.get(
-                feedback_pattern, []
-            )
+            alternatives = self.options.alternatives.get(feedback_pattern, [])
 
             report = LNGReport(
                 used_expression=found_expression,
