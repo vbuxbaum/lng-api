@@ -19,7 +19,7 @@ def process_text(
 
 
 @app.post("/", response_model=List[LNGReport])
-def process_text_custom_options(
+def process_text_with_custom_options(
     analyzer_options: AnalyzerOptions,
     input_text: str = Query(
         default="", example="João e Maria são ótimos amigos", max_length=10000
@@ -31,5 +31,5 @@ def process_text_custom_options(
 
 
 @app.get("/analyzer_options", response_model=AnalyzerOptions)
-def get_analyzer_options():
+def get_default_analyzer_options():
     return feedback_handler.options
