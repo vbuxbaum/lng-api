@@ -28,3 +28,8 @@ def process_text_custom_options(
     return Feedbacks(analyzer_options.dict()).find_avoided_expression(
         input_text
     )
+
+
+@app.get("/analyzer_options", response_model=AnalyzerOptions)
+def get_analyzer_options():
+    return feedback_handler.options
