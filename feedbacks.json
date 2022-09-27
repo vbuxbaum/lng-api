@@ -15,18 +15,18 @@
     "os trabalhadores": "os_trabalhadores"
   },
   "alternatives": {
-    "os_usuarios": ["as pessoas que usam", "quem usa", "as pessoas usuárias"],
-    "os_estudantes": ["as pessoas que estudam", "quem estuda", "as pessoas estudantes"],
-    "os_instrutores": ["as pessoas que instruem", "quem instrui", "as pessoas instrutoras"],
-    "os_especialistas": ["quem é especialista", "as pessoas especialistas"],
-    "os_amigos": ["as amizades", "as pessoas amigas"],
-    "os_inimigos": ["as inimizades", "as pessoas inimigas"],
-    "os_doutores": ["quem fez doutorado", "as pessoas doutoras"],
-    "os_moradores": ["quem mora", "as pessoas moradoras", "pessoas que moram"],
-    "os_criadores": ["quem criou", "quem cria", "as pessoas criadoras"],
-    "os_agricultores": ["quem agriculta", "as pessoas da agricultura", "as pessoas agricultoras"],
-    "os_produtores": ["quem produz", "as pessoas que produzem", "as pessoas produtoras"],
-    "os_consumidores": ["quem consome", "as pessoas que consomem", "as pessoas consumidoras"],
-    "os_trabalhadores": ["quem trabalha", "as pessoas trabalhadoras"]
+    "os_usuarios": ["pessoas que usam", "quem usa", "pessoas usuárias"],
+    "os_estudantes": ["pessoas que estudam", "quem estuda", "pessoas estudantes"],
+    "os_instrutores": ["pessoas que instruem", "quem instrui", "pessoas instrutoras"],
+    "os_especialistas": ["quem é especialista", "pessoas especialistas"],
+    "os_amigos": ["amizades", "pessoas amigas"],
+    "os_inimigos": ["inimizades", "pessoas inimigas"],
+    "os_doutores": ["quem fez doutorado", "pessoas que fizeram doutorado", "pessoas doutoras"],
+    "os_moradores": ["quem mora", "pessoas moradoras", "pessoas que moram"],
+    "os_criadores": ["quem criou", "quem cria", "pessoas que criam", "pessoas criadoras"],
+    "os_agricultores": ["quem agriculta", "pessoas da agricultura", "pessoas agricultoras"],
+    "os_produtores": ["quem produz", "pessoas que produzem", "pessoas produtoras"],
+    "os_consumidores": ["quem consome", "pessoas que consomem", "pessoas consumidoras"],
+    "os_trabalhadores": ["quem trabalha", "pessoas que trabalham", "pessoas trabalhadoras"]
   }
 }
