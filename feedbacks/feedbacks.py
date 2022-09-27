@@ -28,7 +28,7 @@ class AnalyzerOptions(BaseModel):
 
 class LNGReport(BaseModel):
     used_expression: str
-    expression_alternatives: list
+    expression_alternatives: list = []
 
 
 class Feedbacks:
@@ -61,7 +61,7 @@ class Feedbacks:
                 f"Base de feedbacks com sintaxe inválida : {e.args[0]}"
             )
 
-    def find_avoided_expression(self, text_message: str) -> str:
+    def find_avoided_expression(self, text_message: str) -> list[LNGReport]:
 
         analyzer = TextAnalyzer(text_message)
 
