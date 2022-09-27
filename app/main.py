@@ -1,6 +1,8 @@
 from typing import List
 from fastapi import FastAPI, Query
-from feedbacks.feedbacks import AnalyzerOptions, Feedbacks, LNGReport
+from app.data_model import AnalyzerOptions, LNGReport
+from app.feedback.analyzer_service import Feedbacks
+
 
 app = FastAPI(title="LNG API")
 
@@ -26,3 +28,8 @@ def process_text_custom_options(
     return Feedbacks(analyzer_options.dict()).find_avoided_expression(
         input_text
     )
+
+
+@app.get("/analyzer_options", response_model=AnalyzerOptions)
+def get_analyzer_options():
+    return feedback_handler.options

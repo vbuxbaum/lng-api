@@ -1,4 +1,4 @@
-from feedbacks.feedbacks import LNGReport
+from app.data_model import LNGReport
 
 BAD_MESSAGES = [
     (
