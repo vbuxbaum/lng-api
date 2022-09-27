@@ -1,50 +1,44 @@
+from feedbacks.feedbacks import LNGReport
+
 BAD_MESSAGES = [
     (
-        ("muitooos estudantes ativos", "os_estudantes"),
+        LNGReport(used_expression="muitooos estudantes ativos"),
         "Sobre isso que são muitooos estudantes ativos e algo mais.",
     ),
     (
-        ("estudantes aprovados", "os_estudantes"),
+        LNGReport(used_expression="estudantes aprovados"),
         "Sobre estudantes aprovados e algo mais.",
     ),
     (
-        ("muitos usuários", "os_usuarios"),
+        LNGReport(used_expression="muitos usuários"),
         "Sobre termos muitos _usuarios_. e algo mais",
     ),
     (
-        ("poucos usuários", "os_usuarios"),
+        LNGReport(used_expression="poucos usuários"),
         "Sobre termos *poucos* usuarios e algo mais.",
     ),
     (
-        ("usuários desligados", "os_usuarios"),
+        LNGReport(used_expression="usuários desligados"),
         "Sobre [usuários] desligados e algo mais.",
     ),
     (
-        ("poucos estudantes", "os_estudantes"),
+        LNGReport(used_expression="poucos estudantes"),
         "Sobre *_poucos estudantes_* e algo mais.",
     ),
     (
-        ("tranquilos e tranquilas", "tranquilos_as"),
-        "Sobre estarem tranquilos e tranquilas e algo mais",
-    ),
-    (
-        ("denegriu", "denegrir"),
-        "Sobre alguem que denegriu e algo mais",
-    ),
-    (
-        ("alguns estudantes", "os_estudantes"),
+        LNGReport(used_expression="alguns estudantes"),
         "Sobre alguns estudantes e algo mais.",
     ),
     (
-        ("instrutores", "os_instrutores"),
+        LNGReport(used_expression="instrutores"),
         "Sobre somente instrutores e algo mais.",
     ),
     (
-        ("usuários", "os_usuarios"),
+        LNGReport(used_expression="usuários"),
         "Sobre somente serem usuários e algo mais.",
     ),
     (
-        ("estudantes campeões", "os_estudantes"),
+        LNGReport(used_expression="estudantes campeões"),
         "Estudantes campeões testando no início.",
     ),
 ]
