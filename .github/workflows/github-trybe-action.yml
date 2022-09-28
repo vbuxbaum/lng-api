@@ -1,0 +1,29 @@
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  evaluator:
+    runs-on: self-hosted
+    steps:
+      - name: Fetch project repository
+        uses: actions/checkout@v2
+
+      - name: Fetch Flake8 linter
+        uses: actions/checkout@v2
+        with:
+          repository: betrybe/flake8-linter-action
+          ref: v1.3
+          token: ${{ secrets.GIT_HUB_PAT }}
+          path: .github/actions/flake8-linter
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v1.4.4
+        with:
+          node-version: "12"
+
+      - name: Run Flake8 linter
+        uses: ./.github/actions/flake8-linter
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pr_number: ${{ github.event.pull_request.number }} 
