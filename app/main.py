@@ -30,10 +30,6 @@ def process_text_with_custom_options(
     )
 
 
-
-
-
-
 @app.get("/analyzer_options", response_model=AnalyzerOptions)
 def get_default_analyzer_options():
     return feedback_handler.options
