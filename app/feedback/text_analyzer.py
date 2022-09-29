@@ -18,7 +18,6 @@ TAGGER = joblib.load("POS_tagger_brill.pkl")
 
 class TextAnalyzer:
     GENDER_MARKS = {"os", "ores", "ões", "ns", "ãos"}
-    NEUTRAL_MARK = {"pessoas"}
 
     def __init__(self, text_message) -> None:
         self.raw_message = self.clear_message(text_message)
@@ -42,13 +41,10 @@ class TextAnalyzer:
         if not (this_prefix or this_sufix):
             return None
 
-        if this_prefix in self.NEUTRAL_MARK:
-            return None
-
         result = word_target
-        if this_prefix and self.marks_dominant_gender(this_prefix):
+        if self.__analyze_prefix(this_prefix):
             result = this_prefix + " " + result
-        if this_sufix and self.marks_dominant_gender(this_sufix):
+        if self.__analyze_sufix(this_sufix):
             result = result + " " + this_sufix
 
         if self.marks_dominant_gender(word_target) or result != word_target:
@@ -56,11 +52,26 @@ class TextAnalyzer:
         else:
             return None
 
+    def __analyze_sufix(self, this_sufix):
+        return (
+            this_sufix
+            and self.marks_dominant_gender(this_sufix)
+            and not self.pos_tags.get(this_sufix, "") == "V"
+            and not self.pos_tags.get(this_sufix, "") == "PROPESS"
+            and not self.pos_tags.get(this_sufix, "") == "ART"
+        )
+
+    def __analyze_prefix(self, this_prefix):
+        return (
+            this_prefix
+            and self.marks_dominant_gender(this_prefix)
+            and not self.pos_tags.get(this_prefix, "") == "V"
+        )
+
     def marks_dominant_gender(self, target_word):
-        gender_marked = any(
+        return any(
             mark for mark in self.GENDER_MARKS if target_word.endswith(mark)
         )
-        return gender_marked and not self.is_verb_tag(target_word)
 
     def is_verb_tag(self, tagged_word):
         return self.pos_tags.get(tagged_word, "") == "V"
