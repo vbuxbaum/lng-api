@@ -51,5 +51,6 @@ GOOD_MESSAGES = [
     ("Sobre Estudantes. Ativos não deveriam ser problema"),
     ("Sobre emoji :green_heart: e pessoas instrutoras"),
     ("Sobre estudantes campeãs"),
+    ("Sobre pessoas estudantes nos jornais"),
     ("Estudantes não podem ter prejuízo com essa mensagem"),
 ]
