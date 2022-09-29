@@ -61,7 +61,6 @@ def test_get_options_endpoint_mocking_service(
     app_instance: TestClient,
     monkeypatch,
     mock_feedback: Feedbacks,
-    base_report,
 ):
     mock_options = {
         "feedbacks": {"fake expression": "fake_pattern"},
