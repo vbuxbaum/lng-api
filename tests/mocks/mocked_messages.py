@@ -34,12 +34,16 @@ BAD_MESSAGES = [
         "Sobre somente instrutores e algo mais.",
     ),
     (
-        LNGReport(used_expression="usuários"),
-        "Sobre somente serem usuários e algo mais.",
+        LNGReport(used_expression="trabalhadores"),
+        "Sobre somente serem trabalhadores e algo mais.",
     ),
     (
         LNGReport(used_expression="estudantes campeões"),
         "Estudantes campeões testando no início.",
+    ),
+    (
+        LNGReport(used_expression="aos estudantes"),
+        "Sobre agradecer aos estudantes.",
     ),
 ]
 
@@ -50,7 +54,9 @@ GOOD_MESSAGES = [
     ("Sobre muitos. Estudantes não deveriam ser problema"),
     ("Sobre Estudantes. Ativos não deveriam ser problema"),
     ("Sobre emoji :green_heart: e pessoas instrutoras"),
-    ("Sobre estudantes campeãs"),
-    ("Sobre pessoas estudantes nos jornais"),
+    ("Sobre pessoas estudantes campeãs"),
+    ("Sobre observar estudantes nos jornais"),
+    ("Sobre grupo das pessoas estudantes nos escritórios"),
+    ("Sobre disponibilizar para estudantes uns benefícios"),
     ("Estudantes não podem ter prejuízo com essa mensagem"),
 ]
