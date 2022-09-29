@@ -2,7 +2,16 @@ import random
 import tests.mocks.mocked_messages as mocked_msgs
 from app.feedback.analyzer_service import Feedbacks
 from app.feedback.text_analyzer import TextAnalyzer
+from fastapi.testclient import TestClient
+from app.main import app
 import pytest
+
+
+@pytest.fixture(scope="module")
+def app_instance():
+    """Instance of the FastAPI app"""
+
+    return TestClient(app=app)
 
 
 @pytest.fixture(scope="module")
