@@ -27,8 +27,7 @@ class TextAnalyzer:
 
     def check_for_avoided_expression(self, avoided_expression):
         if self.is_gender_related(avoided_expression):
-            gender_analysis = self.check_gender_neutrality(avoided_expression)
-            if gender_analysis:
+            if gender_analysis := self.check_gender_neutrality(avoided_expression):
                 return gender_analysis
         elif avoided_expression in self.raw_message:
             return avoided_expression
@@ -43,9 +42,9 @@ class TextAnalyzer:
 
         result = word_target
         if self.__analyze_prefix(this_prefix):
-            result = this_prefix + " " + result
+            result = f"{this_prefix} {result}"
         if self.__analyze_sufix(this_sufix):
-            result = result + " " + this_sufix
+            result = f"{result} {this_sufix}"
 
         if self.marks_dominant_gender(word_target) or result != word_target:
             return result
@@ -56,16 +55,16 @@ class TextAnalyzer:
         return (
             this_sufix
             and self.marks_dominant_gender(this_sufix)
-            and not self.pos_tags.get(this_sufix, "") == "V"
-            and not self.pos_tags.get(this_sufix, "") == "PROPESS"
-            and not self.pos_tags.get(this_sufix, "") == "ART"
+            and self.pos_tags.get(this_sufix, "") != "V"
+            and self.pos_tags.get(this_sufix, "") != "PROPESS"
+            and self.pos_tags.get(this_sufix, "") != "ART"
         )
 
     def __analyze_prefix(self, this_prefix):
         return (
             this_prefix
             and self.marks_dominant_gender(this_prefix)
-            and not self.pos_tags.get(this_prefix, "") == "V"
+            and self.pos_tags.get(this_prefix, "") != "V"
         )
 
     def marks_dominant_gender(self, target_word):
