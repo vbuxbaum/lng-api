@@ -1,4 +1,4 @@
-# LNG API aaaaaaa
+# LNG API aaaaaaa BBBBaBB
 
 Essa jovem API faz analises em textos visando uma Linguagem Neutra de Gênero.
 
