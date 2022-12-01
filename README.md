@@ -2,7 +2,7 @@
 
 Essa jovem API faz analises em textos visando uma Linguagem Neutra de Gênero.
 
-Uma escrita neutra de gênero evita: 
+Uma escrita neutra de gênero eviasdasdta: 
 - **generalizações masculinas** como  "_João e Maria são trabalhadores_", sugerindo "_João e Maria são pessoas trabalhadoras_";
 - **o gênero masculino implícito** como "_precisamos pensar no usuário do aplicativo_", sugerindo "_precisamos pensar em quem usa o aplicativo_"
 
