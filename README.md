@@ -1,4 +1,4 @@
-# LNG API
+# LNG API Trybe_2
 
 Essa jovem API faz analises em textos visando uma Linguagem Neutra de Gênero.
 
