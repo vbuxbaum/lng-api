@@ -1,4 +1,4 @@
-# LNG API
+# LNG API teste
 
 Essa jovem API faz analises em textos visando uma Linguagem Neutra de Gênero.
 
