@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  flake8_py3:
+  PythonLintAndTest:
     runs-on: ubuntu-latest
     steps:
       - name: Login to Docker Hub
