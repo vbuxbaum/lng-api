@@ -1,3 +1,5 @@
+![Flak8 & Pytest](https://github.com/vbuxbaum/bingo-api/actions/workflows/lint-testing-action.yml/badge.svg)
+
 # LNG API
 
 Essa jovem API faz analises em textos visando uma Linguagem Neutra de Gênero.
