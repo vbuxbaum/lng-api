@@ -1,4 +1,4 @@
-name: Lint
+name: Python Lint and Test
 
 on:
   pull_request:
