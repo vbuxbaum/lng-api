@@ -17,7 +17,7 @@ else:
 nltk.download("punkt")
 
 TAGGER: BrillTagger = joblib.load(
-    Path(__file__).parent / "../app_data/POS_tagger_brill.pkl"
+    Path(__file__).parent / "../../app_data/POS_tagger_brill.pkl"
 )
 
 

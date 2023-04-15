@@ -1,13 +1,13 @@
 import json
-from feedback.text_analyzer import TextAnalyzer
-from data_model import AnalyzerOptions, LNGReport
+from src.feedback.text_analyzer import TextAnalyzer
+from src.data_model import AnalyzerOptions, LNGReport
 from pathlib import Path
 
 
 class Feedbacks:
     def __init__(self, analyzer_options=None) -> None:
         self.FEEDBACKS_PATH = (
-            Path(__file__).parent / "../app_data/feedbacks.json"
+            Path(__file__).parent / "../../app_data/feedbacks.json"
         )
 
         self.load_options(analyzer_options)

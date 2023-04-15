@@ -1,7 +1,7 @@
 from typing import List
 from fastapi import FastAPI, Query
-from data_model import AnalyzerOptions, LNGReport
-from feedback.analyzer_service import Feedbacks
+from src.data_model import AnalyzerOptions, LNGReport
+from src.feedback.analyzer_service import Feedbacks
 
 
 app = FastAPI(title="LNG API")
@@ -25,7 +25,7 @@ def process_text_with_custom_options(
         default="", example="João e Maria são ótimos amigos", max_length=10000
     ),
 ):
-    return Feedbacks(analyzer_options.dict()).find_avoided_expression(
+    return Feedbacks(analyzer_options).find_avoided_expression(
         input_text
     )
 
