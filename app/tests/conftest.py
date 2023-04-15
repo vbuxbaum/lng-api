@@ -1,11 +1,12 @@
 import random
-from app.data_model import LNGReport
-import tests.mocks.mocked_messages as mocked_msgs
-from app.feedback.analyzer_service import Feedbacks
-from app.feedback.text_analyzer import TextAnalyzer
-from fastapi.testclient import TestClient
-from app.main import app
+
 import pytest
+import tests.mocks.mocked_messages as mocked_msgs
+from data_model import LNGReport
+from fastapi.testclient import TestClient
+from feedback.analyzer_service import Feedbacks
+from feedback.text_analyzer import TextAnalyzer
+from main import app
 
 
 class FakeFeedbacks:
