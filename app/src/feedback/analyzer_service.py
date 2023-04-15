@@ -1,11 +1,15 @@
 import json
-from app.feedback.text_analyzer import TextAnalyzer
-from app.data_model import AnalyzerOptions, LNGReport
+from src.feedback.text_analyzer import TextAnalyzer
+from src.data_model import AnalyzerOptions, LNGReport
+from pathlib import Path
 
 
 class Feedbacks:
     def __init__(self, analyzer_options=None) -> None:
-        self.FEEDBACKS_PATH = "feedbacks.json"
+        self.FEEDBACKS_PATH = (
+            Path(__file__).parent / "../../app_data/feedbacks.json"
+        )
+
         self.load_options(analyzer_options)
 
     @property
@@ -28,9 +32,7 @@ class Feedbacks:
             with open(self.FEEDBACKS_PATH) as feedbacks_file:
                 return json.load(feedbacks_file)
         except FileNotFoundError as e:
-            raise FileNotFoundError(
-                f"Base de feedbacks não encontrada : {e.args[0]}"
-            )
+            raise FileNotFoundError(f"Base de feedbacks não encontrada : {e}")
         except json.decoder.JSONDecodeError as e:
             raise SyntaxError(
                 f"Base de feedbacks com sintaxe inválida : {e.args[0]}"

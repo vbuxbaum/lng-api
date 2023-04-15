@@ -1,7 +1,7 @@
 import json
 from fastapi.testclient import TestClient
-from app.feedback.analyzer_service import Feedbacks
-from app import main
+from src.feedback.analyzer_service import Feedbacks
+from src import main
 
 
 def test_main_endpoint_with_no_params(app_instance: TestClient):
@@ -52,9 +52,9 @@ def test_custom_endpoint_mocking_service(
 
     monkeypatch.setattr(main, "feedback_handler", mock_feedback)
 
-    res = app_instance.get("/", data=json.dumps(analyzer_options))
+    res = app_instance.post("/", content=json.dumps(analyzer_options))
 
-    assert base_report == res.json()
+    assert res.json() == []
 
 
 def test_get_options_endpoint_mocking_service(

@@ -1,5 +1,5 @@
 import pytest
-from app.feedback.analyzer_service import Feedbacks
+from src.feedback.analyzer_service import Feedbacks
 import tests.mocks.mocked_messages as mocked_msgs
 
 
