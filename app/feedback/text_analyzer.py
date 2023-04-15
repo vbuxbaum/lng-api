@@ -1,7 +1,10 @@
+import ssl
+from pathlib import Path
+
 import joblib
 import nltk
-import ssl
 from nltk import TokenSearcher, word_tokenize
+from nltk.tag.brill import BrillTagger
 from unidecode import unidecode
 
 try:
@@ -13,7 +16,9 @@ else:
 
 nltk.download("punkt")
 
-TAGGER = joblib.load("POS_tagger_brill.pkl")
+TAGGER: BrillTagger = joblib.load(
+    Path(__file__).parent / "../app_data/POS_tagger_brill.pkl"
+)
 
 
 class TextAnalyzer:
