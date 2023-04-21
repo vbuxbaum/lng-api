@@ -9,7 +9,9 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/app
+      - ./app:/app:z
+      # O ':z' indica que o volume será compartilhado.
+      # Só dever ser necessário se usar o VScode
     command: >
       sh -c "python -m uvicorn src.main:app --host=0.0.0.0 --port=8000 --reload"
 
